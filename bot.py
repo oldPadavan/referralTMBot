@@ -201,13 +201,6 @@ def start(message):
     show_start_menu(message.chat.id)
 
 
-@bot.message_handler(commands=['users'])
-def list_users(message):
-    for user in db.session.query(TmUser).all():
-        bot.send_message(message.chat.id,
-                         ', '.join([str(user.id), user.first_name, str(user.username), str(user.invited_by_id), str(user.token)]))
-
-
 @bot.message_handler(commands=['admin_save'])
 def save_admin_contact(message):
     username = message.from_user.username
